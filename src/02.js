@@ -63,11 +63,11 @@ const ADD_USER = 'ADD_USER'
 const REMOVE_USER = 'REMOVE_USER'
 function users (state=usersInitialState, { type, payload }) {
   switch (type) {
-    case GET_USER:
-      /* Implement get user here! */
     case ADD_USER:
+      return [...state, {id: state.splice(-1)[0].id + 1, ...payload}]
       /* Implement add user here! */
     case REMOVE_USER:
+      return state.filter(element => element.id !== payload.id)
       /* Implement remove user here! */
     default:
       return state
@@ -99,8 +99,8 @@ console.log('AFTER COMPLETING TODOS:', store.getState())
   in the following dispatches.
 */
 
-// store.dispatch({ type: GET_USER, payload: { id: 1 } })
-// store.dispatch({ type: REMOVE_USER, payload: { id: 1 } })
-// store.dispatch({ type: ADD_USER, payload: { email: 'scott.hurlow@galvanize.com' } })
-//
-// console.log('AFTER COMPLETING USER CHANGES:', store.getState())
+store.dispatch({ type: REMOVE_USER, payload: { id: 1 } })
+console.log('AFTER REMOVE USER:', store.getState())
+store.dispatch({ type: ADD_USER, payload: { email: 'scott.hurlow@galvanize.com' } })
+
+console.log('AFTER ADD USER:', store.getState())

@@ -31,7 +31,9 @@ const store = redux.createStore(classmates)
 console.log('INITIAL STATE:', store.getState())
 
 store.dispatch({ type: 'ADD', payload: 'Roger' })
+console.log('SECOND STATE:', store.getState())
 store.dispatch({ type: 'REMOVE', payload: 'Wes' })
+console.log('THIRD STATE:', store.getState())
 store.dispatch({ type: 'ADD', payload: 'Scott' })
 
 console.log('LATER STATE:', store.getState())
